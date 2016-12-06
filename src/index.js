@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MovieApp from './MovieApp';
+import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import './style.css';
 
 ReactDOM.render(
-  <MovieApp />,
+  <App />,
   document.getElementById('app')
 );
