@@ -86,6 +86,4 @@ class AppTesting extends Component {
   }
 }
 
-// ReactDOM.render(<App />, document.getElementById('main'));
-
 export default AppTesting;
