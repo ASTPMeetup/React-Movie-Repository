@@ -1,0 +1,139 @@
+body {
+  font: 20px "Segoe UI";
+  color:  #595959;
+}
+
+.delete_img {
+  height: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+  opacity: .5;
+}
+
+.delete_img, ul, .car_edit {
+  display: inline;
+  background-color: transparent;
+}
+
+#car_info {
+  margin-left: 0px;
+}
+
+#car_div {
+  padding: 10px;
+}
+
+ul > .editLink {
+  display: none;
+  text-decoration: underline;
+  color: #0000FF;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+#car_div:hover > ul > .editLink {
+  display: inline;
+}
+
+#year_edit {
+  width: 50px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 20px;
+  display: inline-block;
+  background-color: #e6e6e6;
+}
+
+#make_edit  {
+  width: 155px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 20px;
+  display: inline-block;
+  background-color: #e6e6e6;
+}
+
+#color_edit {
+  width: 60px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 20px;
+  display: inline-block;
+  background-color: #e6e6e6;
+}
+
+#mileage_edit  {
+  width: 75px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: none;
+  font-size: 20px;
+  display: inline-block;
+  background-color: #e6e6e6;
+}
+
+.button {
+  text-align: center;
+  color: #999999;
+  text-decoration: none;
+  padding: 0px;
+  background: transparent;
+  height: 28px;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 100px;
+  border: 1px solid #cccccc;
+}
+
+.car_edit > input:focus {
+  outline: none;
+  background-color: none;
+}
+
+#update_submit {
+  margin-left:10px;
+}
+
+#car_count {
+  text-align: center;
+  width: 100%;
+}
+
+.make_input, .year_input, .mileage_input, .color_input {
+  width: 280px;
+  font-size: 20px;
+  height: 30px;
+  text-decoration: none;
+  border: 0;
+  border-bottom: 1px solid #e6e6e6;
+  color: #737373;
+  outline: none;
+  background-color: transparent;
+}
+
+.car_input {
+  margin-top: 25px;
+  margin-left: 10px;
+  width: 300px;
+}
+
+#back_button {
+  height: 50px;
+  float: left;
+  margin: 10px;
+}
+
+#car-div {
+  display: inline-block;
+}
+
+#main {
+  margin-top: 100px;
+}
+
+.item {
+  padding-left: 20px;
+}
