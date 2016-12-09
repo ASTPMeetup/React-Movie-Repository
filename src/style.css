@@ -19,11 +19,10 @@ body {
   margin-left: 0px;
 }
 
-#movie_div {
+.movie_div {
   padding: 15px;
 }
-
-ul > .editLink {
+ol > .editLink {
   display: none;
   text-decoration: underline;
   color: #0000FF;
@@ -31,7 +30,7 @@ ul > .editLink {
   margin-left: 10px;
 }
 
-#car_div:hover > ul > .editLink {
+.movie_div:hover > .editLink {
   display: inline;
 }
 
@@ -164,4 +163,8 @@ hr {
 
 .thumbnail {
   padding: 10px;
+}
+
+.movieListing {
+  display: inline;
 }

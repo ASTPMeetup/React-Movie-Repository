@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'react-bootstrap';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-
 
 class App extends Component {
 
@@ -17,8 +14,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     // Check local storage to see if we have anything previously saved.
-    const savedMovieList = JSON.parse(localStorage.getItem('movieList'));
+    const savedMovieList = [];
+    const keys = Object.keys(localStorage);
+    var i = keys.length;
+
+    while (i--) {
+        savedMovieList.push(JSON.parse(localStorage.getItem(keys[i])));
+    }
 
     // If we found any movies we want to update our state
     if (savedMovieList) {
@@ -32,7 +36,7 @@ class App extends Component {
   handleChange(event) {
     console.log(event.target.value);
     this.setState({
-      movieList: this.state.movieList,
+      // movieList: this.state.movieList,
       searchText: event.target.value
     });
   }
@@ -56,36 +60,39 @@ class App extends Component {
   }
 
   handleAddItem(e) {
-    // combine the current userInput with the current userInputList
-    const userInput = {"title": this.state.title, "genre": this.state.genre, "year": this.state.year,
-                       "rating": this.state.rating, "actors": this.state.actors};
-    const movieList = [userInput, ...this.state.movieList];
+    e.currentTarget.reset();
 
-    // Set our state
+    // combine the current userInput with the current userInputList
+    var userInput = {"id": this.state.inputTitle, "title": this.state.inputTitle, "genre": this.state.inputGenre,
+                       "year": this.state.inputYear, "rating": this.state.inputRating, "actors": this.state.inputActors, "edit_movie": false};
+
+   var movieList = [userInput, ...this.state.movieList];
+   // set our userInputList in local storage using JSON.stringify
+   localStorage.setItem(userInput.id, JSON.stringify(userInput));
+
+
+    //Set and reset our App state
     this.setState({
       userInput: '',
       movieList: movieList
     });
-
-    // set our userInputList in local storage using JSON.stringify
-    localStorage.setItem('movieList', JSON.stringify(movieList));
     e.preventDefault();
   }
 
   handleTitleChange(e) {
-     this.setState({title: e.target.value});
+     this.setState({inputTitle: e.target.value});
   }
   handleGenreChange(e) {
-     this.setState({genre: e.target.value});
+     this.setState({inputGenre: e.target.value});
   }
   handleYearChange(e) {
-     this.setState({year: e.target.value});
+     this.setState({inputYear: e.target.value});
   }
   handleRatingChange(e) {
-     this.setState({rating: e.target.value});
+     this.setState({inputRating: e.target.value});
   }
   handleActorsChange(e) {
-     this.setState({actors: e.target.value});
+     this.setState({inputActors: e.target.value});
   }
 
   render() {
