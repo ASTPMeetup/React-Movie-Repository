@@ -13,7 +13,7 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
+SearchBar.PropTypes = {
   value: React.PropTypes.string.isRequired,
   onChange: React.PropTypes.func.isRequired
 };

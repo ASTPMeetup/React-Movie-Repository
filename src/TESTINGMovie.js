@@ -75,8 +75,8 @@ class TESTINGMovie extends Component {
               <form name="car_edit" className="car_edit" onSubmit={this.handleUpdateMovie.bind(this)}>
                 <input name="movie title" type="text" id="make_edit" value={this.state.title} onChange={this.handletitleChange.bind(this)} required />
                 <input name="movie genre" type="text" id="make_edit" value={this.state.genre} onChange={this.handlegenreChange.bind(this)} required />
-                <input name="movie year" type="text" id="year_edit" maxLength="4" value={this.state.year} onChange={this.handleyearChange.bind(this)} required />
-                <input name="movie rating" type="text" id="year_edit" maxLength="2" value={this.state.rating} onChange={this.handleratingChange.bind(this)} required />
+                <input name="movie year" type="text" id="year_edit"  value={this.state.year} onChange={this.handleyearChange.bind(this)} required  maxLength="4"/>
+                <input name="movie rating" type="text" id="year_edit" value={this.state.rating} onChange={this.handleratingChange.bind(this)} maxLength="2" required />
                 <input name="movie actors" type="text" id="make_edit" value={this.state.actors} onChange={this.handleactorsChange.bind(this)} required />
                 <input type="submit" value="update" className="button" id="update_submit" />
               </form>

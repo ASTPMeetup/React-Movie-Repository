@@ -9,7 +9,12 @@ class App extends Component {
     this.state = {
       searchText: '',
       userInput: '',
-      movieList: []
+      movieList: [],
+      inputTitle: '',
+      inputGenre: '',
+      inputYear: '',
+      inputActors: '',
+      inputRating: ''
     };
   }
 
@@ -36,7 +41,7 @@ class App extends Component {
   handleChange(event) {
     console.log(event.target.value);
     this.setState({
-      // movieList: this.state.movieList,
+      movieList: this.state.movieList,
       searchText: event.target.value
     });
   }
@@ -63,20 +68,22 @@ class App extends Component {
     e.currentTarget.reset();
 
     // combine the current userInput with the current userInputList
-    var userInput = {"id": this.state.inputTitle, "title": this.state.inputTitle, "genre": this.state.inputGenre,
-                       "year": this.state.inputYear, "rating": this.state.inputRating, "actors": this.state.inputActors, "edit_movie": false};
+    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle, "genre": this.state.inputGenre,
+                     "year": this.state.inputYear, "rating": this.state.inputRating, "actors": this.state.inputActors, "edit_movie": false};
 
-   var movieList = [userInput, ...this.state.movieList];
+   const movieList = [userInput, ...this.state.movieList];
    // set our userInputList in local storage using JSON.stringify
    localStorage.setItem(userInput.id, JSON.stringify(userInput));
 
-
     //Set and reset our App state
-    this.setState({
-      userInput: '',
-      movieList: movieList
-    });
+    this.setState({userInput: '', movieList: movieList});
     e.preventDefault();
+  }
+
+  updateMovieList(obj){
+    debugger;
+    const movieList = [obj, ...this.state.movieList];
+    this.setState({movieList: movieList});
   }
 
   handleTitleChange(e) {

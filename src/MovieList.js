@@ -20,6 +20,10 @@ class MovieList extends Component {
   //    this.setState({actors: e.target.value});
   // }
 
+  updateMovieList(){
+    this.forceUpdate();
+  }
+
   render() {
     return (
       <div className="database">
@@ -32,11 +36,13 @@ class MovieList extends Component {
             //     <ToggleDisplay hide={this.state.edit_movie}>
                 <Movie
                   id={movie.id}
+                  key={movie.key}
                   title={movie.title}
                   genre={movie.genre}
                   year={movie.year}
                   rating={movie.rating}
                   actors={movie.actors}
+                  updateMovieList={movie.updateMovieList}
                 />
                 // </ToggleDisplay>
                 //
