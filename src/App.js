@@ -19,11 +19,15 @@ class App extends Component {
   }
 
   updateApp(obj){
-    debugger;
+
+    console.log('app obj passsed: ');
     console.log(obj);
+
     const movieList = [obj, ...this.state.movieList];
     this.setState({movieList: movieList});
-    console.log('movieList: ' + movieList);
+    
+    console.log('Passed through app: ');
+    console.log(movieList);
   }
 
   componentDidMount() {
@@ -44,14 +48,6 @@ class App extends Component {
         movieList: savedMovieList
       });
     }
-  }
-
-  handleChange(event) {
-    console.log(event.target.value);
-    this.setState({
-      movieList: this.state.movieList,
-      searchText: event.target.value
-    });
   }
 
   getFilteredmovieList() {
@@ -76,8 +72,10 @@ class App extends Component {
     e.currentTarget.reset();
 
     // combine the current userInput with the current userInputList
-    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle, "genre": this.state.inputGenre,
-                     "year": this.state.inputYear, "rating": this.state.inputRating, "actors": this.state.inputActors, "edit_movie": false};
+    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle,
+                       "title": this.state.inputTitle, "genre": this.state.inputGenre,
+                       "year": this.state.inputYear, "rating": this.state.inputRating,
+                       "actors": this.state.inputActors, "edit_movie": false};
 
    const movieList = [userInput, ...this.state.movieList];
    // set our userInputList in local storage using JSON.stringify
@@ -88,20 +86,15 @@ class App extends Component {
     e.preventDefault();
   }
 
-  handleTitleChange(e) {
-     this.setState({inputTitle: e.target.value});
+  handleInputChange(stateName, e) {
+     this.setState({[stateName]: e.target.value});
   }
-  handleGenreChange(e) {
-     this.setState({inputGenre: e.target.value});
-  }
-  handleYearChange(e) {
-     this.setState({inputYear: e.target.value});
-  }
-  handleRatingChange(e) {
-     this.setState({inputRating: e.target.value});
-  }
-  handleActorsChange(e) {
-     this.setState({inputActors: e.target.value});
+
+  handleChange(event) {
+    this.setState({
+      movieList: this.state.movieList,
+      searchText: event.target.value
+    });
   }
 
   render() {
@@ -110,15 +103,15 @@ class App extends Component {
         <div className="col-md-4">
           <form onSubmit={this.handleAddItem.bind(this)} name="movie_input" className="movie_input">
               <p>Title:</p>
-                <input onChange={this.handleTitleChange.bind(this)} name="tile" type="text" className="title_input" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputTitle')} name="tile" type="text" className="title_input" required />
               <p>Genre:</p>
-                <input onChange={this.handleGenreChange.bind(this)} name="genre" type="text" className="genre_input" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputGenre')} name="genre" type="text" className="genre_input" required />
               <p>Year:</p>
-                <input onChange={this.handleYearChange.bind(this)} name="year" type="text" className="year_input" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputYear')} name="year" type="text" className="year_input" required />
               <p>Actors:</p>
-                <input onChange={this.handleActorsChange.bind(this)} name="actors" type="text" className="actors_input" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputActors')} name="actors" type="text" className="actors_input" required />
               <p>Rotten Tomatoes Rating:</p>
-                <input onChange={this.handleRatingChange.bind(this)} name="rating" type="text" className="rating_input" maxLength="2" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputRating')} name="rating" type="text" className="rating_input" maxLength="2" required />
                 <input type="submit" value="Add Movie" className="button"/>
             </form>
           </div>
@@ -127,7 +120,7 @@ class App extends Component {
                   <img src="movie_banner.jpg" className="img-responsive" alt="movie banner" />
                   <div className="caption-full">
                       <h3>React Movie Database</h3>
-                      <span>Search: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)}/>
+                      <span>Search: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)} />
                   </div>
               </div>
             <div>

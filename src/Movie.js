@@ -19,12 +19,11 @@ class Movie extends Component {
 
    handleDeleteClick(e) {
      const movieKey = e.target.parentNode.parentNode;
-     console.log(movieKey);
      localStorage.removeItem(movieKey.getAttribute('id'));
      movieKey.parentNode.removeChild(movieKey);
    }
 
-   handleEditFunc(e) {
+   handleDisplayEditForm(e) {
      this.setState({
        edit_movie: true
      });
@@ -48,20 +47,8 @@ class Movie extends Component {
      this.props.updateMovieList(this.state);
    }
 
-   handleTitleChange(e) {
-      this.setState({title: e.target.value});
-   }
-   handleGenreChange(e) {
-      this.setState({genre: e.target.value});
-   }
-   handleYearChange(e) {
-      this.setState({year: e.target.value});
-   }
-   handleRatingChange(e) {
-      this.setState({rating: e.target.value});
-   }
-   handleActorsChange(e) {
-      this.setState({actors: e.target.value});
+   handleEditChange(stateName, e) {
+      this.setState({[stateName]: e.target.value});
    }
 
    render(){
@@ -80,16 +67,16 @@ class Movie extends Component {
 
             <ToggleDisplay show={this.state.edit_movie}>
               <form name="car_edit" className="car_edit" onSubmit={this.handleUpdateMovie.bind(this)}>
-                <input name="movie title" type="text" id="make_edit" value={this.state.title} onChange={this.handleTitleChange.bind(this)} required />
-                <input name="movie genre" type="text" id="make_edit" value={this.state.genre} onChange={this.handleGenreChange.bind(this)} required />
-                <input name="movie year" type="text" id="year_edit" value={this.state.year} onChange={this.handleYearChange.bind(this)} maxLength="4" required />
-                <input name="movie rating" type="text" id="year_edit" value={this.state.rating} onChange={this.handleRatingChange.bind(this)} maxLength="2" required />
-                <input name="movie actors" type="text" id="make_edit" value={this.state.actors} onChange={this.handleActorsChange.bind(this)} required />
+                <input name="movie title" type="text" id="make_edit" value={this.state.title} onChange={this.handleEditChange.bind(this,'title')} required />
+                <input name="movie genre" type="text" id="make_edit" value={this.state.genre} onChange={this.handleEditChange.bind(this,'genre')} required />
+                <input name="movie year" type="text" id="year_edit" value={this.state.year} onChange={this.handleEditChange.bind(this,'year')} maxLength="4" required />
+                <input name="movie rating" type="text" id="year_edit" value={this.state.rating} onChange={this.handleEditChange.bind(this,'rating')} maxLength="2" required />
+                <input name="movie actors" type="text" id="make_edit" value={this.state.actors} onChange={this.handleEditChange.bind(this,'actors')} required />
                 <input type="submit" value="update" className="button" id="update_submit" />
               </form>
             </ToggleDisplay>
 
-            <a href="#" onClick={this.handleEditFunc.bind(this)} className="editLink">update</a>
+            <a href="#" onClick={this.handleDisplayEditForm.bind(this)} className="editLink">update</a>
             <hr />
           </ol>
         </div>
