@@ -1,27 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Movie from './Movie';
 // import EditMovieForm from './EditMovieForm';
 
 class MovieList extends Component {
 
-  // handletitleChange(e) {
-  //    this.setState({title: e.target.value});
-  // }
-  // handlegenreChange(e) {
-  //    this.setState({genre: e.target.value});
-  // }
-  // handleyearChange(e) {
-  //    this.setState({year: e.target.value});
-  // }
-  // handleratingChange(e) {
-  //    this.setState({rating: e.target.value});
-  // }
-  // handleactorsChange(e) {
-  //    this.setState({actors: e.target.value});
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      updateMovieApp : this.props.updateApp
+    }
+  }
 
-  updateMovieList(){
-    this.forceUpdate();
+  updateMovieList(obj){
+    this.state.updateMovieApp(obj);
+    console.log('object passed: ' + obj);
   }
 
   render() {
@@ -42,7 +34,7 @@ class MovieList extends Component {
                   year={movie.year}
                   rating={movie.rating}
                   actors={movie.actors}
-                  updateMovieList={movie.updateMovieList}
+                  updateMovieList={this.updateMovieList.bind(this)}
                 />
                 // </ToggleDisplay>
                 //
@@ -68,5 +60,9 @@ class MovieList extends Component {
     );
   }
 }
+
+MovieList.PropTypes = {
+  updateApp: React.PropTypes.func.isRequired
+};
 
 export default MovieList;

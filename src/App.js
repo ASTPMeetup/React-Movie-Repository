@@ -14,8 +14,16 @@ class App extends Component {
       inputGenre: '',
       inputYear: '',
       inputActors: '',
-      inputRating: ''
+      inputRating: '',
     };
+  }
+
+  updateApp(obj){
+    debugger;
+    console.log(obj);
+    const movieList = [obj, ...this.state.movieList];
+    this.setState({movieList: movieList});
+    console.log('movieList: ' + movieList);
   }
 
   componentDidMount() {
@@ -80,12 +88,6 @@ class App extends Component {
     e.preventDefault();
   }
 
-  updateMovieList(obj){
-    debugger;
-    const movieList = [obj, ...this.state.movieList];
-    this.setState({movieList: movieList});
-  }
-
   handleTitleChange(e) {
      this.setState({inputTitle: e.target.value});
   }
@@ -129,7 +131,7 @@ class App extends Component {
                   </div>
               </div>
             <div>
-              <MovieList movies={this.getFilteredmovieList()} />
+              <MovieList movies={this.getFilteredmovieList()} updateApp={this.updateApp.bind(this)}/>
             </div>
           </div>
         </div>

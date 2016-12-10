@@ -35,12 +35,17 @@ class Movie extends Component {
      this.setState({
        edit_movie: false
      });
-     console.log(this.state);
-     console.log('key: ' + this.state.key);
+     this.storeUpdate(e);
+     this.updateMovie();
+   }
+
+   storeUpdate(e){
+     e.preventDefault();
      localStorage.getItem(this.state.id);
      localStorage.setItem(this.state.id, JSON.stringify(this.state));
-     this.forceUpdate();
-
+   }
+   updateMovie(props){
+     this.props.updateMovieList(this.state);
    }
 
    handleTitleChange(e) {
@@ -74,7 +79,7 @@ class Movie extends Component {
             </ToggleDisplay>
 
             <ToggleDisplay show={this.state.edit_movie}>
-              <form name="car_edit" className="car_edit" onSubmit={this.handleUpdateMovie.bind(this)} onChange={this.props.updateMovieList}>
+              <form name="car_edit" className="car_edit" onSubmit={this.handleUpdateMovie.bind(this)}>
                 <input name="movie title" type="text" id="make_edit" value={this.state.title} onChange={this.handleTitleChange.bind(this)} required />
                 <input name="movie genre" type="text" id="make_edit" value={this.state.genre} onChange={this.handleGenreChange.bind(this)} required />
                 <input name="movie year" type="text" id="year_edit" value={this.state.year} onChange={this.handleYearChange.bind(this)} maxLength="4" required />
