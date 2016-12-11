@@ -7,14 +7,17 @@ class MovieList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      updateMovieApp : this.props.updateApp
+      updateListView : this.props.updateListing,
+      deleteMovieView: this.props.deleteListing
     }
   }
 
-  updateMovieList(obj){
-    this.state.updateMovieApp(obj);
-    console.log('passed through movelist: ');
-    console.log(obj);
+  updateMovieList(editedMovie){
+    this.state.updateListView(editedMovie);
+  }
+
+  deleteMovie(movieToDelete){
+    this.state.deleteMovieView(movieToDelete);
   }
 
   render() {
@@ -22,16 +25,17 @@ class MovieList extends Component {
       <div className="database">
         {this.props.movies.map(movie => {
           return (
-                <Movie
-                  id={movie.id}
-                  key={movie.key}
-                  title={movie.title}
-                  genre={movie.genre}
-                  year={movie.year}
-                  rating={movie.rating}
-                  actors={movie.actors}
-                  updateMovieList={this.updateMovieList.bind(this)}
-                />
+            <Movie
+              id={movie.id}
+              key={movie.key}
+              title={movie.title}
+              genre={movie.genre}
+              year={movie.year}
+              rating={movie.rating}
+              actors={movie.actors}
+              updateMovieList={this.updateMovieList.bind(this)}
+              deleteMovie={this.deleteMovie.bind(this)}
+            />
           );
         })}
       </div>
@@ -40,7 +44,8 @@ class MovieList extends Component {
 }
 
 MovieList.PropTypes = {
-  updateApp: React.PropTypes.func.isRequired
+  updateListing: React.PropTypes.func.isRequired,
+  deleteListing: React.PropTypes.func.isRequired
 };
 
 export default MovieList;

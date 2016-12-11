@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import preventDefault from 'react-prevent-default';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 
@@ -16,18 +17,6 @@ class App extends Component {
       inputActors: '',
       inputRating: '',
     };
-  }
-
-  updateApp(obj){
-
-    console.log('app obj passsed: ');
-    console.log(obj);
-
-    const movieList = [obj, ...this.state.movieList];
-    this.setState({movieList: movieList});
-    
-    console.log('Passed through app: ');
-    console.log(movieList);
   }
 
   componentDidMount() {
@@ -50,25 +39,27 @@ class App extends Component {
     }
   }
 
-  getFilteredmovieList() {
-    // Remove any white space, and convert the searchText to lowercase
-    const term = this.state.searchText.trim().toLowerCase();
-    const movieList = this.state.movieList;
+  updateListView(editedMovie){
+    const movies = this.state.movieList;
+    const movieListIds = movies.map(movie => movie.id);
+    const movieIndex = movieListIds.indexOf(editedMovie['id']);
 
-    // If our term is an empty string, we want to return all of the movieList
-    if (!term) {
-      return movieList;
-    }
+    //perform update
+    movies[movieIndex] = editedMovie;
+    this.setState({ ...this.state, movieList: movies });
 
-    // Filter will return a new array of movieList, the movieList will
-    // be included in the array if the function returns true,
-    // and excluded if the function returns false
-    return movieList.filter(movie => {
-      return movie.title.toLowerCase().search(term) >= 0;
-    });
+    //update localStorage
+    localStorage.getItem(editedMovie['id']);
+    localStorage.setItem(editedMovie['id'], JSON.stringify(editedMovie));
   }
 
-  handleAddItem(e) {
+  deleteMovieListing(movieToDelete){
+    const movieListings = this.state.movieList.filter(movie => movie.id !== movieToDelete['id']);
+    this.setState({ ...this.state, movieList: movieListings });
+    localStorage.removeItem(movieToDelete['id']);
+  }
+
+  handleAddMovie(e) {
     e.currentTarget.reset();
 
     // combine the current userInput with the current userInputList
@@ -83,11 +74,27 @@ class App extends Component {
 
     //Set and reset our App state
     this.setState({userInput: '', movieList: movieList});
-    e.preventDefault();
   }
 
   handleInputChange(stateName, e) {
      this.setState({[stateName]: e.target.value});
+  }
+
+  getFilteredmovieList() {
+    // Remove any white space, and convert the searchText to lowercase
+    const term = this.state.searchText.trim().toLowerCase();
+    const movieList = this.state.movieList;
+
+    // If our term is an empty string, we want to return all of the movieList
+    if (!term) {
+      return movieList;
+    }
+
+    // Filter will return a new array of movieList, if searchText has
+    // an index value in a movie in movieList it will return true.
+    return movieList.filter(movie => {
+      return movie.title.toLowerCase().search(term) >= 0;
+    });
   }
 
   handleChange(event) {
@@ -101,7 +108,7 @@ class App extends Component {
     return (
       <div>
         <div className="col-md-4">
-          <form onSubmit={this.handleAddItem.bind(this)} name="movie_input" className="movie_input">
+          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input">
               <p>Title:</p>
                 <input onChange={this.handleInputChange.bind(this, 'inputTitle')} name="tile" type="text" className="title_input" required />
               <p>Genre:</p>
@@ -124,7 +131,11 @@ class App extends Component {
                   </div>
               </div>
             <div>
-              <MovieList movies={this.getFilteredmovieList()} updateApp={this.updateApp.bind(this)}/>
+              <MovieList
+                movies={this.getFilteredmovieList()}
+                updateListing={this.updateListView.bind(this)}
+                deleteListing={this.deleteMovieListing.bind(this)}
+               />
             </div>
           </div>
         </div>
