@@ -128,19 +128,6 @@ class App extends Component {
                   </div>
               </div>
             <div className="database">
-              // <Movie
-              //   id={this.state.inputTitle}
-              //   key={this.state.inputTitle}
-              //   genre={this.state.inputGenre}
-              //   title={this.state.inputTitle}
-              //
-              //   year={this.state.inputYear}
-              //   rating={this.state.inputRating}
-              //   actors={this.state.inputActors}
-              //   updateMovieList={this.updateListView.bind(this)}
-              //   deleteMovie={this.deleteMovieListing.bind(this)}
-              //
-              // />
               <MovieList
                 movies={this.getFilteredmovieList()}
                 updateListing={this.updateListView.bind(this)}
