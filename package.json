@@ -1,5 +1,5 @@
 {
-  "name": "MovieLibrary",
+  "name": "react-movie-repository",
   "version": "0.1.0",
   "devDependencies": {
     "react-scripts": "0.7.0"
