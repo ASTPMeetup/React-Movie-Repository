@@ -1,6 +1,7 @@
 body {
   font: 20px "Segoe UI";
   color:  #595959;
+  padding: 100px;
 }
 
 .delete_img {
@@ -22,56 +23,72 @@ body {
 .movie_div {
   padding: 15px;
 }
-ol > .editLink {
+
+span > .editLink {
   display: none;
-  text-decoration: underline;
   color: #0000FF;
-  font-size: 10px;
+  font-size: 16px;
   margin-left: 10px;
 }
 
-.movie_div:hover > .editLink {
+span:hover > .editLink {
   display: inline;
 }
 
 #year_edit {
-  width: 50px;
+  width: 70px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
   font-size: 20px;
   display: inline-block;
-  background-color: #e6e6e6;
+  background-color: transparent;
+  border-left: 1px solid #e0e0e0;
+  opacity: 0.8;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #make_edit  {
-  width: 155px;
+  width: 175px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
   font-size: 20px;
   display: inline-block;
-  background-color: #e6e6e6;
+  background-color: transparent;
+  border-left: 1px solid #e0e0e0;
+  opacity: 0.8;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #color_edit {
-  width: 60px;
+  width: 140px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
   font-size: 20px;
   display: inline-block;
-  background-color: #e6e6e6;
+  background-color: transparent;
+  border-left: 1px solid #e0e0e0;
+  opacity: 0.8;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #mileage_edit  {
-  width: 75px;
+  width: 55px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
   font-size: 20px;
   display: inline-block;
-  background-color: #e6e6e6;
+  background-color: transparent;
+  border-left: 1px solid #e0e0e0;
+  opacity: 0.8;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .button {
@@ -86,15 +103,23 @@ ol > .editLink {
   border-radius: 10px;
   width: 100px;
   border: 1px solid #cccccc;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background: #e3e3e3;
 }
 
 .car_edit > input:focus {
   outline: none;
   background-color: none;
+  display: inline-block;
 }
 
 #update_submit {
   margin-left:10px;
+  padding: 5px !important;
+  width: 70px;
 }
 
 #car_count {
@@ -121,7 +146,6 @@ ol > .editLink {
 
 .movie_input {
   margin-top: 25px;
-  margin-left: 10px;
   width: 300px;
 }
 
@@ -140,13 +164,17 @@ ol > .editLink {
 }
 
 .item {
-  padding-left: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 1px solid #e0e0e0;
 }
 
 .database {
+  width: 950px;
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
+  margin-left: 40px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
@@ -162,9 +190,19 @@ hr {
 }
 
 .thumbnail {
+  width: 950px;
   padding: 10px;
+  margin-left: 40px;
 }
 
 .movieListing {
   display: inline;
+}
+
+#banner_image {
+  width: 920px;
+}
+
+.navbar-header {
+  padding-left: 100px;
 }

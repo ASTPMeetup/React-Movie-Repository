@@ -25,7 +25,6 @@ class App extends Component {
     const savedMovieList = [];
     const keys = Object.keys(localStorage);
     var i = keys.length;
-
     while (i--) {
         savedMovieList.push(JSON.parse(localStorage.getItem(keys[i])));
     }
@@ -61,17 +60,14 @@ class App extends Component {
 
   handleAddMovie(e) {
     e.currentTarget.reset();
-
     // combine the current userInput with the current userInputList
-    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle,
-                       "title": this.state.inputTitle, "genre": this.state.inputGenre,
-                       "year": this.state.inputYear, "rating": this.state.inputRating,
+    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle,
+                       "genre": this.state.inputGenre, "year": this.state.inputYear, "rating": this.state.inputRating,
                        "actors": this.state.inputActors, "edit_movie": false};
 
    const movieList = [userInput, ...this.state.movieList];
    // set our userInputList in local storage using JSON.stringify
    localStorage.setItem(userInput.id, JSON.stringify(userInput));
-
     //Set and reset our App state
     this.setState({userInput: '', movieList: movieList});
   }
@@ -107,7 +103,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="col-md-4">
+        <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
           <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input">
               <p>Title:</p>
                 <input onChange={this.handleInputChange.bind(this, 'inputTitle')} name="tile" type="text" className="title_input" required />
@@ -118,15 +114,15 @@ class App extends Component {
               <p>Actors:</p>
                 <input onChange={this.handleInputChange.bind(this, 'inputActors')} name="actors" type="text" className="actors_input" required />
               <p>Rotten Tomatoes Rating:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputRating')} name="rating" type="text" className="rating_input" maxLength="2" required />
+                <input onChange={this.handleInputChange.bind(this, 'inputRating')} name="rating" type="text" className="rating_input" maxLength="3" required />
                 <input type="submit" value="Add Movie" className="button"/>
             </form>
           </div>
-          <div className="col-md-8">
+          <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9">
               <div className="thumbnail">
-                  <img src="movie_banner.jpg" className="img-responsive" alt="movie banner" />
+                  <img src="movie_banner.jpg" className="img-responsive" alt="movie banner" id="banner_image" />
                   <div className="caption-full">
-                      <h3>React Movie Database</h3>
+                      <h2>React Movie Database</h2>
                       <span>Search: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)} />
                   </div>
               </div>
