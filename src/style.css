@@ -206,3 +206,7 @@ hr {
 .navbar-header {
   padding-left: 100px;
 }
+
+#rm_icon {
+  width: 16px;
+}

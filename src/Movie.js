@@ -35,18 +35,23 @@ class Movie extends Component {
       this.setState({[stateName]: e.target.value});
    }
 
+  //  componentWillReceiveProps(nextProps) {
+  //    this.props = nextProps;
+  //    this.setState({...this.state});
+  //  }
+
    render(){
       return (
         <div className="row" id={this.state.id}>
           <ol className="col-lg-12 movie_div">
-            <img src="del.jpg" className="delete_img" onClick={preventDefault(this.handleDeleteClick.bind(this))} />
+            <img src="del.jpg" className="delete_img" role="presentation" onClick={preventDefault(this.handleDeleteClick.bind(this))} />
 
             <ToggleDisplay hide={this.state.edit_movie}>
-              <span className="item">{this.state.title}</span>
-              <span className="item"><i>genre: </i> {this.state.genre}</span>
-              <span className="item"><i>yr: </i>{this.state.year}</span>
-              <span className="item"><i>rating: </i>{this.state.rating + '%'}</span>
-              <span className="item"><i>cast: </i>{this.state.actors}</span>
+              <span className="item"><strong>{this.state.title}</strong></span>
+              <span className="item">{this.state.year}</span>
+              <span className="item">{this.state.genre}</span>
+              <span className="item"><img src="rotten_tomatoes.png" role="presentation" id="rm_icon" />&nbsp;{this.state.rating + '%'}</span>
+              <span className="item"><i>cast: &nbsp;</i>{this.state.actors}</span>
               <a href="#" onClick={this.handleDisplayEditForm.bind(this)} className="editLink">update</a>
             </ToggleDisplay>
 
@@ -66,7 +71,7 @@ class Movie extends Component {
                 value={this.state.year} onChange={this.handleEditChange.bind(this,'year')}
                 maxLength="4" required />
 
-                <input name="movie rating" type="text" id="mileage_edit"
+                <input name="movie rating" type="text" id="year_edit"
                 value={this.state.rating} onChange={this.handleEditChange.bind(this,'rating')}
                 maxLength="3" required />
 
