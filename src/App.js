@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import preventDefault from 'react-prevent-default';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import Movie from './Movie';
@@ -61,7 +60,7 @@ class App extends Component {
 
   handleAddMovie(e) {
     e.currentTarget.reset();
-    debugger;
+    e.preventDefault();
     // combine the current userInput with the current userInputList
     const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle,
                        "genre": this.state.inputGenre, "year": this.state.inputYear, "rating": this.state.inputRating,
@@ -106,7 +105,7 @@ class App extends Component {
     return (
       <div>
         <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input">
+          <form onSubmit={this.handleAddMovie.bind(this)} name="movie_input" className="movie_input">
               <p>Title:</p>
                 <input onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="tile" type="text" className="title_input" required />
               <p>Genre:</p>
