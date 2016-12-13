@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import preventDefault from 'react-prevent-default';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import Movie from './Movie';
@@ -58,9 +59,7 @@ class App extends Component {
     localStorage.removeItem(movieToDelete['id']);
   }
 
-  handleAddMovie(e) {
-    e.currentTarget.reset();
-    e.preventDefault();
+  handleAddMovie() {
     // combine the current userInput with the current userInputList
     const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle,
                        "genre": this.state.inputGenre, "year": this.state.inputYear, "rating": this.state.inputRating,
@@ -105,17 +104,17 @@ class App extends Component {
     return (
       <div>
         <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-          <form onSubmit={this.handleAddMovie.bind(this)} name="movie_input" className="movie_input">
+          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input" ref="form">
               <p>Title:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="tile" type="text" className="title_input" required />
+                <input ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="tile" type="text" className="title_input" required />
               <p>Genre:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputGenre')} value={this.state.inputGenre} name="genre" type="text" className="genre_input" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputGenre')} value={this.state.inputGenre} name="genre" type="text" className="genre_input" required />
               <p>Year:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="year" type="text" className="year_input" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="year" type="text" className="year_input" required />
               <p>Actors:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputActors')} value={this.state.inputActors} name="actors" type="text" className="actors_input" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputActors')} value={this.state.inputActors} name="actors" type="text" className="actors_input" required />
               <p>Rotten Tomatoes Rating:</p>
-                <input onChange={this.handleInputChange.bind(this, 'inputRating')} value={this.state.inputRating} name="rating" type="text" className="rating_input" maxLength="3" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputRating')} value={this.state.inputRating} name="rating" type="text" className="rating_input" maxLength="3" required />
                 <input type="submit" value="Add Movie" className="button"/>
             </form>
           </div>
