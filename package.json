@@ -1,7 +1,6 @@
 {
   "name": "react-movie-repository",
   "version": "0.1.0",
-  "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
@@ -16,8 +15,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "engines": {
-    "node": "6.9.2"
-  },
+  }
 }
