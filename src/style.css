@@ -128,7 +128,6 @@ span:hover > .editLink {
 }
 
 .title_input, .year_input, .genre_input, .rating_input, .actors_input, .search_input {
-  width: 280px;
   font-size: 20px;
   height: 30px;
   text-decoration: none;
@@ -170,11 +169,11 @@ span:hover > .editLink {
 }
 
 .database {
-  width: 950px;
+  width: 800px;
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  margin-left: 40px;
+  /*margin-left: 40px;*/
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
@@ -190,9 +189,9 @@ hr {
 }
 
 .thumbnail {
-  width: 950px;
+  width: 800px;
   padding: 10px;
-  margin-left: 40px;
+  /*margin-left: 40px;*/
 }
 
 .movieListing {
@@ -200,7 +199,7 @@ hr {
 }
 
 #banner_image {
-  width: 920px;
+  width: 770px;
 }
 
 .navbar-header {

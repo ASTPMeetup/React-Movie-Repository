@@ -123,7 +123,10 @@ class App extends Component {
                   <img src="movie_banner.jpg" role="presentation" className="img-responsive" alt="movie banner" id="banner_image" />
                   <div className="caption-full">
                       <h2>React Movie Database</h2>
-                      <span>Search: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)} />
+                      <blockquote>
+                      <p>Submit movie info below to edit, remove and search through all your favorite films in our nifty localStorage database!</p>
+                      </blockquote>
+                      <span>Search Titles: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)} />
                   </div>
               </div>
             <div className="database">
