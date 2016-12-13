@@ -61,6 +61,7 @@ class App extends Component {
 
   handleAddMovie(e) {
     e.currentTarget.reset();
+    debugger;
     // combine the current userInput with the current userInputList
     const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle,
                        "genre": this.state.inputGenre, "year": this.state.inputYear, "rating": this.state.inputRating,
