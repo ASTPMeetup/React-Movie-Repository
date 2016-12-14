@@ -1,7 +1,8 @@
 body {
-  font: 20px "Segoe UI";
+  font: 17.5px "Segoe UI";
   color:  #595959;
   padding: 100px;
+  min-height: 1000px;
 }
 
 .delete_img {
@@ -27,7 +28,7 @@ body {
 span > .editLink {
   display: none;
   color: #0000FF;
-  font-size: 16px;
+  font-size: 12px;
   margin-left: 10px;
 }
 
@@ -36,11 +37,11 @@ span:hover > .editLink {
 }
 
 #year_edit {
-  width: 70px;
+  width: 63px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
-  font-size: 20px;
+  font-size: 17.5px;
   display: inline-block;
   background-color: transparent;
   border-left: 1px solid #e0e0e0;
@@ -50,11 +51,11 @@ span:hover > .editLink {
 }
 
 #make_edit  {
-  width: 175px;
+  width: 158px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
-  font-size: 20px;
+  font-size: 17.5px;
   display: inline-block;
   background-color: transparent;
   border-left: 1px solid #e0e0e0;
@@ -64,11 +65,11 @@ span:hover > .editLink {
 }
 
 #color_edit {
-  width: 140px;
+  width: 126px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
-  font-size: 20px;
+  font-size: 17.5px;
   display: inline-block;
   background-color: transparent;
   border-left: 1px solid #e0e0e0;
@@ -78,11 +79,11 @@ span:hover > .editLink {
 }
 
 #mileage_edit  {
-  width: 55px;
+  width: 50px;
   margin-right: 5px;
   margin-bottom: 5px;
   border: none;
-  font-size: 20px;
+  font-size: 17.5px;
   display: inline-block;
   background-color: transparent;
   border-left: 1px solid #e0e0e0;
@@ -209,11 +210,11 @@ hr {
   width: 16px;
 }
 
-#initalDatabaseView {
+#emptyDatabaseView {
   text-align: center;
 }
 
-#initalDatabaseView > p {
+#emptyDatabaseView > p {
   opacity: 0.5;
   font-size: 16px;
 }

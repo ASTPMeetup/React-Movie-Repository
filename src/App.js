@@ -16,7 +16,8 @@ class App extends Component {
       inputGenre: '',
       inputYear: '',
       inputActors: '',
-      inputRating: ''
+      inputRating: '',
+      movieCount: 0
     };
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
     const keys = Object.keys(localStorage);
     var i = keys.length;
 
-    this.initialDatabaseView(i);
+    this.emptyDatabaseView(i);
 
     while (i--) {
         savedMovieList.push(JSON.parse(localStorage.getItem(keys[i])));
@@ -41,12 +42,14 @@ class App extends Component {
     }
   }
 
+
+  //fires when a movie Component updates it's content.
   updateListView(editedMovie){
     const movies = this.state.movieList;
     const movieListIds = movies.map(movie => movie.id);
     const movieIndex = movieListIds.indexOf(editedMovie['id']);
 
-    //perform update
+    //perform update so list matches latest updates
     movies[movieIndex] = editedMovie;
     this.setState({ ...this.state, movieList: movies });
 
@@ -56,15 +59,16 @@ class App extends Component {
   }
 
   deleteMovieListing(movieToDelete){
+    // filters only the movies we don't want to delete and adds them to state
     const movieListings = this.state.movieList.filter(movie => movie.id !== movieToDelete['id']);
     this.setState({ ...this.state, movieList: movieListings });
     localStorage.removeItem(movieToDelete['id']);
-    this.initialDatabaseView(movieListings.length);
+    this.emptyDatabaseView(movieListings.length);
   }
 
   handleAddMovie() {
     // combine the current userInput with the current userInputList
-    const userInput = {"id": this.state.inputTitle, "key": this.state.inputTitle, "title": this.state.inputTitle,
+    var userInput = {"id": this.state.movieCount + 1, "key": this.state.movieCount + 1, "title": this.state.inputTitle,
                        "genre": this.state.inputGenre, "year": this.state.inputYear, "rating": this.state.inputRating,
                        "actors": this.state.inputActors, "edit_movie": false};
 
@@ -72,9 +76,11 @@ class App extends Component {
    // set our userInputList in local storage using JSON.stringify
    localStorage.setItem(userInput.id, JSON.stringify(userInput));
 
-   this.initialDatabaseView(userInput.id.length);
+   this.emptyDatabaseView(1);
+
     //Set and reset our App state
-   this.setState({userInput: '', movieList: movieList});
+   this.setState({userInput: '', movieList: movieList, inputTitle: '', inputGenre: '',
+                  inputYear: '', inputActors: '', inputRating: '', movieCount: userInput.id});
   }
 
   handleInputChange(stateName, e) {
@@ -105,10 +111,9 @@ class App extends Component {
     });
   }
 
-  initialDatabaseView(checkForMovies){
-    console.log(checkForMovies);
+  emptyDatabaseView(checkForMovies){
     const displayValue = (checkForMovies > 0) ? "none" : "block";
-    document.getElementById("initalDatabaseView").style.display = displayValue;
+    document.getElementById("emptyDatabaseView").style.display = displayValue;
   }
 
   render() {
@@ -121,11 +126,11 @@ class App extends Component {
               <p>Genre:</p>
                 <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputGenre')} value={this.state.inputGenre} name="genre" type="text" className="genre_input" required />
               <p>Year:</p>
-                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="year" type="text" className="year_input" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="year" type="number" max="2017" className="year_input" required />
               <p>Actors:</p>
                 <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputActors')} value={this.state.inputActors} name="actors" type="text" className="actors_input" required />
               <p>Rotten Tomatoes Rating:</p>
-                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputRating')} value={this.state.inputRating} name="rating" type="text" className="rating_input" maxLength="3" required />
+                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputRating')} value={this.state.inputRating} name="rating" type="number" className="rating_input" max="100" required />
                 <input type="submit" value="Add Movie" className="button"/>
             </form>
           </div>
@@ -146,7 +151,7 @@ class App extends Component {
                 updateListing={this.updateListView.bind(this)}
                 deleteListing={this.deleteMovieListing.bind(this)}
                />
-               <span id="initalDatabaseView"><p>Fill me up with movies!</p></span>
+               <span id="emptyDatabaseView"><p>Fill me up with movies!</p></span>
             </div>
           </div>
         </div>

@@ -35,11 +35,6 @@ class Movie extends Component {
       this.setState({[stateName]: e.target.value});
    }
 
-  //  componentWillReceiveProps(nextProps) {
-  //    this.props = nextProps;
-  //    this.setState({...this.state});
-  //  }
-
    render(){
       return (
         <div className="row" id={this.state.id}>
@@ -67,13 +62,13 @@ class Movie extends Component {
                 value={this.state.genre} onChange={this.handleEditChange.bind(this,'genre')}
                 required />
 
-                <input name="movie year" type="text" id="year_edit"
+                <input name="movie year" type="number" id="year_edit"
                 value={this.state.year} onChange={this.handleEditChange.bind(this,'year')}
-                maxLength="4" required />
+                max="2017" required />
 
-                <input name="movie rating" type="text" id="year_edit"
+                <input name="movie rating" type="number" id="year_edit"
                 value={this.state.rating} onChange={this.handleEditChange.bind(this,'rating')}
-                maxLength="3" required />
+                max="100" required />
 
                 <input name="movie actors" type="text" id="make_edit"
                 value={this.state.actors} onChange={this.handleEditChange.bind(this,'actors')}
