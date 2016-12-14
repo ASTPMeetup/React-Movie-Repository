@@ -26,10 +26,12 @@ class App extends Component {
     const savedMovieList = [];
     const keys = Object.keys(localStorage);
     var i = keys.length;
+
+    this.initialDatabaseView(i);
+
     while (i--) {
         savedMovieList.push(JSON.parse(localStorage.getItem(keys[i])));
     }
-
     // If we found any movies we want to update our state
     if (savedMovieList) {
       this.setState({
@@ -57,6 +59,7 @@ class App extends Component {
     const movieListings = this.state.movieList.filter(movie => movie.id !== movieToDelete['id']);
     this.setState({ ...this.state, movieList: movieListings });
     localStorage.removeItem(movieToDelete['id']);
+    this.initialDatabaseView(movieListings.length);
   }
 
   handleAddMovie() {
@@ -68,8 +71,10 @@ class App extends Component {
    const movieList = [userInput, ...this.state.movieList];
    // set our userInputList in local storage using JSON.stringify
    localStorage.setItem(userInput.id, JSON.stringify(userInput));
+
+   this.initialDatabaseView(userInput.id.length);
     //Set and reset our App state
-    this.setState({userInput: '', movieList: movieList});
+   this.setState({userInput: '', movieList: movieList});
   }
 
   handleInputChange(stateName, e) {
@@ -98,6 +103,12 @@ class App extends Component {
       movieList: this.state.movieList,
       searchText: event.target.value
     });
+  }
+
+  initialDatabaseView(checkForMovies){
+    console.log(checkForMovies);
+    const displayValue = (checkForMovies > 0) ? "none" : "block";
+    document.getElementById("initalDatabaseView").style.display = displayValue;
   }
 
   render() {
@@ -135,6 +146,7 @@ class App extends Component {
                 updateListing={this.updateListView.bind(this)}
                 deleteListing={this.deleteMovieListing.bind(this)}
                />
+               <span id="initalDatabaseView"><p>Fill me up with movies!</p></span>
             </div>
           </div>
         </div>

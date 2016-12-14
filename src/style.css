@@ -171,9 +171,8 @@ span:hover > .editLink {
 .database {
   width: 800px;
   min-height: 20px;
-  padding: 19px;
+  padding: 15px 15px 3px 15px;
   margin-bottom: 20px;
-  /*margin-left: 40px;*/
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
@@ -208,4 +207,13 @@ hr {
 
 #rm_icon {
   width: 16px;
+}
+
+#initalDatabaseView {
+  text-align: center;
+}
+
+#initalDatabaseView > p {
+  opacity: 0.5;
+  font-size: 16px;
 }
