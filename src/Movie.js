@@ -36,7 +36,6 @@ class Movie extends Component {
    }
 
    render(){
-      console.log(this.state);
       return (
         <div className="row" id={this.state._id}>
           <ol className="col-lg-12 movie_div">

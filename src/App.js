@@ -34,7 +34,6 @@ class App extends Component {
       var savedMovieList = response;
       if (savedMovieList) {
         this.setState({movieList:savedMovieList.data});
-        console.log(this.state.movieList);
       }
     })
     .catch(function (error) {
