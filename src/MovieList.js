@@ -26,13 +26,13 @@ class MovieList extends Component {
         {this.props.movies.map(movie => {
           return (
             <Movie
-              id={movie.id}
+              _id={movie._id}
               key={movie.key}
-              title={movie.title}
-              genre={movie.genre}
-              year={movie.year}
-              rating={movie.rating}
-              actors={movie.actors}
+              Title={movie.Title}
+              Genre={movie.Genre}
+              Year={movie.Year}
+              Metascore={movie.Metascore}
+              Actors={movie.Actors}
               updateMovieList={this.updateMovieList.bind(this)}
               deleteMovie={this.deleteMovie.bind(this)}
             />

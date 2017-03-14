@@ -7,13 +7,13 @@ class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      key: this.props.id,
-      title: this.props.title,
-      genre: this.props.genre,
-      year: this.props.year,
-      actors: this.props.actors,
-      rating: this.props.rating,
+      _id: this.props._id,
+      key: this.props._id,
+      Title: this.props.Title,
+      Genre: this.props.Genre,
+      Year: this.props.Year,
+      Actors: this.props.Actors,
+      Metascore: this.props.Metascore,
       edit_movie: false
     };
   }
@@ -36,17 +36,18 @@ class Movie extends Component {
    }
 
    render(){
+      console.log(this.state);
       return (
-        <div className="row" id={this.state.id}>
+        <div className="row" id={this.state._id}>
           <ol className="col-lg-12 movie_div">
             <img src="del.jpg" className="delete_img" role="presentation" onClick={preventDefault(this.handleDeleteClick.bind(this))} />
 
             <ToggleDisplay hide={this.state.edit_movie}>
-              <span className="item"><strong>{this.state.title}</strong></span>
-              <span className="item">{this.state.year}</span>
-              <span className="item">{this.state.genre}</span>
-              <span className="item"><img src="rotten_tomatoes.png" role="presentation" id="rm_icon" />&nbsp;{this.state.rating + '%'}</span>
-              <span className="item"><i>cast: &nbsp;</i>{this.state.actors}</span>
+              <span className="item"><strong>{this.state.Title}</strong></span>
+              <span className="item">{this.state.Year}</span>
+              <span className="item">{this.state.Genre}</span>
+              <span className="item"><img src="meta.png" role="presentation" id="rm_icon" />&nbsp;{this.state.Metascore + '%'}</span>
+              <span className="item"><i>cast: &nbsp;</i>{this.state.Actors}</span>
               <a href="#" onClick={this.handleDisplayEditForm.bind(this)} className="editLink">update</a>
             </ToggleDisplay>
 
@@ -55,23 +56,23 @@ class Movie extends Component {
               <form name="car_edit" className="car_edit" onSubmit={preventDefault(this.handleUpdateMovie.bind(this))}>
 
                 <input name="movie title" type="text" id="make_edit"
-                value={this.state.title} onChange={this.handleEditChange.bind(this,'title')}
+                value={this.state.Title} onChange={this.handleEditChange.bind(this,'Title')}
                 required />
 
                 <input name="movie genre" type="text" id="color_edit"
-                value={this.state.genre} onChange={this.handleEditChange.bind(this,'genre')}
+                value={this.state.Genre} onChange={this.handleEditChange.bind(this,'Genre')}
                 required />
 
                 <input name="movie year" type="number" id="year_edit"
-                value={this.state.year} onChange={this.handleEditChange.bind(this,'year')}
+                value={this.state.Year} onChange={this.handleEditChange.bind(this,'Year')}
                 max="2017" required />
 
                 <input name="movie rating" type="number" id="year_edit"
-                value={this.state.rating} onChange={this.handleEditChange.bind(this,'rating')}
+                value={this.state.Metascore} onChange={this.handleEditChange.bind(this,'Metascore')}
                 max="100" required />
 
                 <input name="movie actors" type="text" id="make_edit"
-                value={this.state.actors} onChange={this.handleEditChange.bind(this,'actors')}
+                value={this.state.Actors} onChange={this.handleEditChange.bind(this,'Actors')}
                 required />
 
                 <input type="submit" value="update" className="button" id="update_submit" />
