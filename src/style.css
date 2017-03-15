@@ -22,12 +22,13 @@ body {
 }
 
 .movie_div {
-  padding: 15px;
+  padding-top: 15px;
+  padding-left: 0px;
 }
 
-span > .editLink {
+.editLink {
   display: none;
-  color: #0000FF;
+  color: #23527c;
   font-size: 12px;
   margin-left: 10px;
 }
@@ -164,9 +165,15 @@ span:hover > .editLink {
 }
 
 .item {
-  padding-left: 10px;
-  padding-right: 10px;
-  border-left: 1px solid #e0e0e0;
+  padding-right: 5px;
+  margin-top: 0px !important;
+}
+.poster {
+  text-align: center;
+  padding-top: 10px;
+}
+#no_data {
+  color: #8e0000;
 }
 
 .database {

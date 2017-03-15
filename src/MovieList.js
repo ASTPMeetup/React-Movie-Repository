@@ -27,12 +27,14 @@ class MovieList extends Component {
           return (
             <Movie
               _id={movie._id}
-              key={movie.key}
+              key={movie._id}
               Title={movie.Title}
               Genre={movie.Genre}
               Year={movie.Year}
               Metascore={movie.Metascore}
               Actors={movie.Actors}
+              Plot={movie.Plot}
+              Poster={movie.Poster}
               updateMovieList={this.updateMovieList.bind(this)}
               deleteMovie={this.deleteMovie.bind(this)}
             />
