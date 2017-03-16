@@ -38,7 +38,7 @@ class Movie extends Component {
 
    render(){
       return (
-        <div role="row" id={this.state.movie_id}>
+        <div id={this.state.movie_id}>
 
             <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 poster">
               <ToggleDisplay show={this.state.Poster === ''}>

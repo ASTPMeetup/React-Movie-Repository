@@ -178,7 +178,7 @@ class App extends Component {
                               <input aria-labelledby="title_submit" ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="Tile" type="text" className="title_input" required />
                             </div>
                             <div className="form-group">
-                              <label id="year_search">Year (optional): </label>
+                              <label id="year_submit">Year (optional): </label>
                               <input aria-labelledby="year_submit" ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="Year" type="number" pattern="^\d{4}$" max="2017" className="year_input"/>
                             </div>
                             <input type="submit" role="button" value="Add Movie" className="button"/>
