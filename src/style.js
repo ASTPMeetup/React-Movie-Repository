@@ -1,8 +1,16 @@
 function eventListeners() {
-  document.getElementsById('make_edit').addEventListener('keypress', function(e) {
-    e.currentTarget.style.width = ((e.currentTarget.value.length + 1) * 16) + 'px';
-    console.log(e.currentTarget);
-  }
+  var details = document.getElementById('details');
+  var editlink = document.getElementsByClassName('editLink');
+
+  details.addEventListener('mouseover', function(e) {
+    editlink.style.display = 'inline';
+  });
+
+  details.addEventListener('mouseoout', function(e) {
+    editlink.style.display = 'inline';
+  });
 }
+
+
 
 window.onload = eventListeners();

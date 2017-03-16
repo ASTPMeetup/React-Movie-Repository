@@ -52,12 +52,12 @@ class Movie extends Component {
               </ToggleDisplay>
             </div>
 
-            <div className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
+            <div className="col-lg-10 col-md-10 col-sm-8 col-xs-12" id="details">
               <ToggleDisplay hide={this.state.edit_movie}>
                 <h3 className="item"><strong>{this.state.Title}</strong></h3>
-                <span className="item">{this.state.Year}</span>
-                <img src="del.jpg" className="delete_img" role="presentation" onClick={preventDefault(this.handleDeleteClick.bind(this))} />
-                <a href="#/" onClick={this.handleDisplayEditForm.bind(this)} className="editLink">update</a>
+                <h4 className="item">{this.state.Year}</h4>
+                <span><img src="delete.png" className="delete_img" role="presentation" onClick={preventDefault(this.handleDeleteClick.bind(this))} /></span>
+                <span><img src="update.png" onClick={this.handleDisplayEditForm.bind(this)} id="editLink" /></span>
               </ToggleDisplay>
 
               <ToggleDisplay show={this.state.edit_movie}>

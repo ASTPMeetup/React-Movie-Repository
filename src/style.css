@@ -11,11 +11,17 @@ body {
 .delete_img {
   height: 15px;
   margin-right: 10px;
-  margin-left: 10px;
   opacity: .5;
 }
 
-.delete_img, ul, .car_edit {
+.delete_img:hover, #editLink:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.delete_img, ul, .car_edit, #editLink {
   display: inline;
   background-color: transparent;
 }
@@ -35,15 +41,10 @@ img {
   min-height: 150px;
 }
 
-.editLink {
-  display: none;
-  color: #23527c;
-  font-size: 16px;
-  margin-left: 10px;
-}
-
-span:hover > .editLink {
-  display: inline;
+#editLink {
+  height: 15px;
+  margin-right: 10px;
+  opacity: 0.5;
 }
 
 #year_edit {
