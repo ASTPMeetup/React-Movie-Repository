@@ -1,8 +1,11 @@
 body {
   font: 17.5px "Segoe UI";
   color:  #595959;
-  padding: 100px;
+  padding-top: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
   min-height: 1000px;
+  background: #000;
 }
 
 .delete_img {
@@ -24,12 +27,13 @@ body {
 .movie_div {
   padding-top: 15px;
   padding-left: 0px;
+  min-height: 150px;
 }
 
 .editLink {
   display: none;
   color: #23527c;
-  font-size: 12px;
+  font-size: 16px;
   margin-left: 10px;
 }
 
@@ -97,15 +101,13 @@ span:hover > .editLink {
   text-align: center;
   color: #999999;
   text-decoration: none;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 150px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background: transparent;
   font-size: 15px;
   border-radius: 10px;
-  width: 100px;
   border: 1px solid #cccccc;
-  margin-top: 20px;
+  width: 150px;
 }
 
 .button:hover {
@@ -131,23 +133,24 @@ span:hover > .editLink {
 
 .title_input, .year_input, .genre_input, .rating_input, .actors_input, .search_input {
   font-size: 20px;
-  height: 30px;
   text-decoration: none;
   border: 0;
   border-bottom: 1px solid #e6e6e6;
   color: #737373;
   outline: none;
+  margin-right: 15px;
   background-color: transparent;
-  margin-bottom: 30px;
+}
+#input_container {
+  display: inline-block;
 }
 
 .search_input {
   margin-bottom: 10px;
 }
 
-.movie_input {
-  margin-top: 25px;
-  width: 300px;
+label {
+  padding-right: 10px;
 }
 
 #back_button {
@@ -177,7 +180,6 @@ span:hover > .editLink {
 }
 
 .database {
-  width: 800px;
   min-height: 20px;
   padding: 15px 15px 3px 15px;
   margin-bottom: 20px;
@@ -196,8 +198,7 @@ hr {
 }
 
 .thumbnail {
-  width: 800px;
-  padding: 10px;
+  padding: 15px;
   /*margin-left: 40px;*/
 }
 
@@ -206,7 +207,6 @@ hr {
 }
 
 #banner_image {
-  width: 770px;
 }
 
 .navbar-header {

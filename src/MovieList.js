@@ -27,7 +27,7 @@ class MovieList extends Component {
           return (
             <Movie
               _id={movie._id}
-              key={movie._id}
+              key={movie.key}
               Title={movie.Title}
               Genre={movie.Genre}
               Year={movie.Year}

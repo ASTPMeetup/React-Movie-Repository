@@ -10,11 +10,13 @@ const OMDbAPI = "http://www.omdbapi.com/?";
 
 class OMDbMovie {
   constructor(Title, Year, Poster, Genre, Metascore, Actors, Plot) {
+    this.Date = Date.now();
+    this.key = Date.now();
     this.Title = Title;
     this.Year = Year;
-    this.Genre = Genre.split(",",2).toString();
+    this.Genre = Genre;
     this.Metascore = Metascore;
-    this.Actors = Actors.split(",",2).toString();
+    this.Actors = Actors;
     this.Poster = Poster;
     this.Plot = Plot;
   }
@@ -40,6 +42,7 @@ class App extends Component {
   axios.get(appDatabase + appKey).then((response)=> {
       // If we found any movies we want to update our state
       var savedMovieList = response.data;
+      savedMovieList.sort(function(a, b) { return parseFloat(b.Date) - parseFloat(a.Date); });
       if (savedMovieList) {
         this.setState({movieList:savedMovieList});
       }
@@ -54,12 +57,11 @@ class App extends Component {
     var OMDbRequest = OMDbAPI + 't=' + OMDbTitle + '&y=' + OMDbYear;
 
     axios.get(OMDbRequest).then((response) => {
-        var OMDbResponse = response.data;
+        var rd = response.data;
+        var OMDbObject = new OMDbMovie(rd.Title, rd.Year, rd.Poster, rd.Genre, rd.Metascore, rd.Actors, rd.Plot);
 
-        if(!OMDbResponse.Error) {
-          axios.post(appDatabase + appKey, OMDbResponse).then((response) => {
-              var rd = response.data;
-              var OMDbObject = new OMDbMovie(rd.Title, rd.Year, rd.Poster, rd.Genre, rd.Metascore, rd.Actors, rd.Plot);
+        if(!rd.Error) {
+          axios.post(appDatabase + appKey, OMDbObject).then((response) => {
               const movielist = [OMDbObject, ...this.state.movieList];
               this.setState({movieList: movielist, userInput: '', inputTitle: '', inputYear: ''});
             })
@@ -89,12 +91,11 @@ class App extends Component {
     var OMDbUpdateRequest = OMDbAPI + 't=' + OMDb_t + '&y=' + OMDb_y;
 
     axios.get(OMDbUpdateRequest).then((response) => {
-        var OMDbUpdateResponse = response.data;
+        var rdata = response.data;
+        var OMDbUpdatedObject = new OMDbMovie(rdata.Title, rdata.Year, rdata.Poster, rdata.Genre, rdata.Metascore, rdata.Actors, rdata.Plot);
 
-        if(!OMDbUpdateResponse.Error) {
-          axios.put(appDatabase + '/' + editedMovie['_id'] + appKey, OMDbUpdateResponse).then((response) => {
-              var rdata = response.data;
-              var OMDbUpdatedObject = new OMDbMovie(rdata.Title, rdata.Year, rdata.Poster, rdata.Genre, rdata.Metascore, rdata.Actors, rdata.Plot);
+        if(!rdata.Error) {
+          axios.put(appDatabase + '/' + editedMovie['_id'] + appKey, OMDbUpdatedObject).then((response) => {
               OMDbUpdatedObject._id = editedMovie['_id'];
               movies[movieIndex] = OMDbUpdatedObject;
               this.setState({ ...this.state, movieList: movies});
@@ -102,7 +103,7 @@ class App extends Component {
           .catch(function (error) { console.log(error);});
         }
         else {
-          var updatedObject = new OMDbMovie(this.state.inputTitle, this.state.inputYear, '', '', '', '', '');
+          var updatedObject = new OMDbMovie(editedMovie.Title, editedMovie.Year, '', '', '', '', '');
           axios.put(appDatabase + '/' + editedMovie['_id'] + appKey, updatedObject).then((response) => {
             console.log(response);
             updatedObject._id = editedMovie['_id'];
@@ -118,8 +119,6 @@ class App extends Component {
   deleteMovieListing(movieToDelete){
     // filters only the movies we don't want to delete and adds them to state
     const movieListings = this.state.movieList.filter(movie => movie._id !== movieToDelete['_id']);
-
-    console.log(movieToDelete['_id']);
 
     axios.delete(appDatabase + '/' + movieToDelete['_id'] + appKey).then((response) => {
         console.log(response);
@@ -157,27 +156,36 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input" ref="form">
-              <p>Title:</p>
-                <input ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="Tile" type="text" className="title_input" required />
-              <p>Year:</p>
-                <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="Year" type="number" pattern="^\d{4}$" max="2017" className="year_input"/>
-                <input type="submit" value="Add Movie" className="button"/>
-            </form>
-          </div>
-          <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div className="thumbnail">
-                  <img src="movie_banner.jpg" role="presentation" className="img-responsive" alt="movie banner" id="banner_image" />
+                  <img src="movie_banner2.jpg" role="presentation" className="img-responsive" alt="movie banner" id="banner_image" />
                   <div className="caption-full">
                       <h2>React Movie Database</h2>
                       <blockquote>
-                      <p>Submit movie info below to edit, remove and search through all your favorite films in our nifty OpenWS database!</p>
+                      <p>This RESTful application ultilizes OMDb API to auto-generate data based on movie title submissions. Submit a title below to edit, remove and search through all your favorite films. </p>
                       </blockquote>
-                      <span>Search Titles: </span><SearchBar value={this.state.searchText} onChange={this.handleChange.bind(this)} />
+                      <div id="input_container">
+                        <div>
+                          <label>Search Titles: </label><SearchBar value={ this.state.searchText} onChange={this.handleChange.bind(this)} />
+                        </div>
+                        <div>
+                          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input form-inline" ref="form">
+                            <div className="form-group">
+                              <label>Title: </label>
+                              <input ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="Tile" type="text" className="title_input" required />
+                            </div>
+                            <div className="form-group">
+                              <label>Year (optional): </label>
+                              <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="Year" type="number" pattern="^\d{4}$" max="2017" className="year_input"/>
+                            </div>
+                            <input type="submit" value="Add Movie" className="button"/>
+                          </form>
+                        </div>
+                      </div>
                   </div>
               </div>
             <div className="database">
+              <br />
               <MovieList
                 movies={this.getFilteredmovieList()}
                 updateListing={this.updateListView.bind(this)}
