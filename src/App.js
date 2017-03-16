@@ -169,7 +169,7 @@ class App extends Component {
                       </blockquote>
                       <div id="input_container">
                         <div>
-                          <label aria-labelledby="movie_search">Search Titles: </label><SearchBar value={ this.state.searchText} onFocus="window.scroll(0,0)" onChange={this.handleChange.bind(this)} />
+                          <label id="movie_search">Search Titles: </label><SearchBar value={ this.state.searchText} onFocus="window.scroll(0,0)" onChange={this.handleChange.bind(this)} />
                         </div>
                         <div>
                           <form role="form" onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input form-inline" ref="form">

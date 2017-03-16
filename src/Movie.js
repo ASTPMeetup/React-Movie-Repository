@@ -38,7 +38,7 @@ class Movie extends Component {
 
    render(){
       return (
-        <div role="row" className="row" id={this.state.movie_id}>
+        <div role="row" id={this.state.movie_id}>
 
             <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 poster">
               <ToggleDisplay show={this.state.Poster === ''}>
@@ -52,7 +52,7 @@ class Movie extends Component {
               </ToggleDisplay>
             </div>
 
-            <div className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
+            <div className="row" className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
               <ToggleDisplay hide={this.state.edit_movie}>
                 <h3 role="rowheader" className="item"><strong>{this.state.Title}</strong></h3>
                 <h4 className="item">{this.state.Year}</h4>
@@ -67,7 +67,7 @@ class Movie extends Component {
                     value={this.state.Title} onChange={this.handleEditChange.bind(this,'Title')}
                     required />
 
-                    <label aria-labelledby="year_edit_input">Year</label>
+                    <label id="year_edit_input">Year</label>
                     <input aria-labelledby="year_edit_input" name="movie year" type="number" className="year_edit" pattern="^\d{4}$"
                     value={this.state.Year} onChange={this.handleEditChange.bind(this,'Year')}
                     max="2017" />
