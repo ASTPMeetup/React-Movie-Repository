@@ -8,6 +8,12 @@ body {
   background: #000;
 }
 
+.bannerImg {
+  height: 209px;
+  max-width: 85% !important;
+  margin-bottom: 5px;
+}
+
 .delete_img {
   height: 15px;
   margin-right: 10px;
@@ -24,11 +30,6 @@ body {
 .delete_img, ul, .car_edit, #editLink {
   display: inline;
   background-color: transparent;
-}
-
-img {
-  margin-bottom: 5px;
-  max-width: 85% !important;
 }
 
 #car_info {
