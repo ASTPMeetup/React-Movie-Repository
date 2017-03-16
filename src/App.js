@@ -40,7 +40,7 @@ class App extends Component {
     // Check local storage to see if we have anything previously saved.
   const savedMovieList = [];
   axios.get(appDatabase + appKey).then((response)=> {
-      // If we found any movies we want to update our state
+      // If we found any movies, we want to update our movie list state by recent submissions
       var savedMovieList = response.data;
       savedMovieList.sort(function(a, b) { return parseFloat(b.Date) - parseFloat(a.Date); });
       if (savedMovieList) {
@@ -50,78 +50,81 @@ class App extends Component {
     .catch(function (error) { console.log(error); });
   }
 
-  // combine the current userInput with the current userInputList
+  configOMBdRequest(title, year){
+    var OMDbTitle = title.trim().replace(/ /g, '+');
+    var OMDbGetRequest = OMDbAPI + 't=' + OMDbTitle + '&y=' + year;
+    return OMDbGetRequest;
+  }
+
+  // combine the current userInput with the current movie list
   handleAddMovie() {
-    var OMDbTitle = this.state.inputTitle.trim().replace(/ /g, '+');
-    var OMDbYear = this.state.inputYear;
-    var OMDbRequest = OMDbAPI + 't=' + OMDbTitle + '&y=' + OMDbYear;
+    //scrub input data to configure OMDb request
+    var OMDbRequest = this.configOMBdRequest(this.state.inputTitle, this.state.inputYear);
 
     axios.get(OMDbRequest).then((response) => {
+        console.log(response.status);
         var rd = response.data;
         var OMDbObject = new OMDbMovie(rd.Title, rd.Year, rd.Poster, rd.Genre, rd.Metascore, rd.Actors, rd.Plot);
 
-        if(!rd.Error) {
-          axios.post(appDatabase + appKey, OMDbObject).then((response) => {
-              const movielist = [OMDbObject, ...this.state.movieList];
-              this.setState({movieList: movielist, userInput: '', inputTitle: '', inputYear: ''});
-            })
-            .catch(function (error) { console.log(error);});
-        }
-        else {
+        // if OMBd responses with no data found
+        if(rd.Error) {
           var movieObject = new OMDbMovie(this.state.inputTitle, this.state.inputYear, '', '', '', '', '');
-          axios.post(appDatabase + appKey, movieObject).then((response) => {
-            console.log(response);
-            const movielist = [movieObject, ...this.state.movieList];
-            this.setState({movieList: movielist, userInput: '', inputTitle: '', inputYear: ''});
-          })
-          .catch(function (error) { console.log(error);});
+          this.handlePostRequest(movieObject);
         }
+        else { this.handlePostRequest(OMDbObject); }
       })
       .catch(function (error) { console.log(error); });
+  }
+
+  handlePostRequest(obj) {
+    axios.post(appDatabase + appKey, obj).then((response) => {
+        obj._id = response.data._id;
+        const movielist = [obj, ...this.state.movieList];
+        this.setState({movieList: movielist, userInput: '', inputTitle: '', inputYear: ''});
+      })
+      .catch(function (error) { console.log(error);});
   }
 
   //fires when a movie Component updates it's content.
-  updateListView(editedMovie){
-    const movies = this.state.movieList;
-    const movieListIds = movies.map(movie => movie._id);
-    const movieIndex = movieListIds.indexOf(editedMovie['_id']);
-
-    var OMDb_t = editedMovie.Title.trim().replace(/ /g, '+');
-    var OMDb_y = editedMovie.Year;
-    var OMDbUpdateRequest = OMDbAPI + 't=' + OMDb_t + '&y=' + OMDb_y;
+  updateListView(editedMovie, movie_id){
+    //scrub input data to configure OMDb request
+    var OMDbUpdateRequest = this.configOMBdRequest(editedMovie.Title, editedMovie.Year);
 
     axios.get(OMDbUpdateRequest).then((response) => {
+        console.log(response.status);
         var rdata = response.data;
         var OMDbUpdatedObject = new OMDbMovie(rdata.Title, rdata.Year, rdata.Poster, rdata.Genre, rdata.Metascore, rdata.Actors, rdata.Plot);
 
-        if(!rdata.Error) {
-          axios.put(appDatabase + '/' + editedMovie['_id'] + appKey, OMDbUpdatedObject).then((response) => {
-              OMDbUpdatedObject._id = editedMovie['_id'];
-              movies[movieIndex] = OMDbUpdatedObject;
-              this.setState({ ...this.state, movieList: movies});
-          })
-          .catch(function (error) { console.log(error);});
-        }
-        else {
+        if(rdata.Error) {
           var updatedObject = new OMDbMovie(editedMovie.Title, editedMovie.Year, '', '', '', '', '');
-          axios.put(appDatabase + '/' + editedMovie['_id'] + appKey, updatedObject).then((response) => {
-            console.log(response);
-            updatedObject._id = editedMovie['_id'];
-            movies[movieIndex] = updatedObject;
-            this.setState({ ...this.state, movieList: movies});
-          })
-          .catch(function (error) { console.log(error);});
+          this.handlePutRequest(editedMovie, movie_id, updatedObject);
         }
+        else { this.handlePutRequest(editedMovie, movie_id, OMDbUpdatedObject); }
       })
       .catch(function (error) { console.log(error); });
   }
 
-  deleteMovieListing(movieToDelete){
-    // filters only the movies we don't want to delete and adds them to state
-    const movieListings = this.state.movieList.filter(movie => movie._id !== movieToDelete['_id']);
+  handlePutRequest(editObj, movie_id, updatedObj){
+    //locate movie item to update in our list
+    const movies = this.state.movieList;
+    const movieListIds = movies.map(movie => movie._id);
+    const movieIndex = movieListIds.indexOf(movie_id);
 
-    axios.delete(appDatabase + '/' + movieToDelete['_id'] + appKey).then((response) => {
-        console.log(response);
+    axios.put(appDatabase + '/' + movie_id + appKey, updatedObj).then((response) => {
+      console.log(response.status);
+      updatedObj._id = movie_id;
+      movies[movieIndex] = updatedObj;
+      this.setState({ ...this.state, movieList: movies});
+    })
+    .catch(function (error) { console.log(error);});
+  }
+
+  deleteMovieListing(movie_id){
+    // filters only the movies we don't want to delete and adds them to state
+    const movieListings = this.state.movieList.filter(movie => movie._id !== movie_id);
+
+    axios.delete(appDatabase + '/' + movie_id + appKey).then((response) => {
+        console.log(response.status);
         this.setState({ ...this.state, movieList: movieListings });
       })
       .catch(function (error) { console.log(error); });

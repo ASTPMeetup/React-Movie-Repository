@@ -7,7 +7,7 @@ class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _id: this.props._id,
+      movie_id: this.props.movie_id,
       Title: this.props.Title,
       Genre: this.props.Genre,
       Year: this.props.Year,
@@ -25,11 +25,11 @@ class Movie extends Component {
 
    handleUpdateMovie(props){
     this.setState({edit_movie: false});
-    this.props.updateMovieList(this.state);
+    this.props.updateMovieList(this.state, this.state.movie_id);
    }
 
    handleDeleteClick(props) {
-     this.props.deleteMovie(this.state);
+     this.props.deleteMovie(this.state.movie_id);
    }
 
    handleEditChange(stateName, e) {
@@ -38,9 +38,9 @@ class Movie extends Component {
 
    render(){
       return (
-        <div className="row" id={this.state._id}>
+        <div className="row" id={this.state.movie_id}>
 
-            <div className="col-lg-2 col-md-2 col-sm-4 col-xs-6 poster">
+            <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 poster">
               <ToggleDisplay show={this.state.Poster === ''}>
                 <img role="presentation" src="movie-placeholder.png" width="140px"/>
               </ToggleDisplay>
@@ -52,7 +52,7 @@ class Movie extends Component {
               </ToggleDisplay>
             </div>
 
-            <div className="col-lg-10 col-md-10 col-sm-8 col-xs-6 details">
+            <div className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
               <ToggleDisplay hide={this.state.edit_movie}>
                 <h3 className="item"><strong>{this.state.Title}</strong></h3>
                 <span className="item">{this.state.Year}</span>
@@ -68,7 +68,7 @@ class Movie extends Component {
                     required />
 
                     <label>Year</label>
-                    <input name="movie year" type="number" id="make_edit" pattern="^\d{4}$"
+                    <input name="movie year" type="number" id="year_edit" pattern="^\d{4}$"
                     value={this.state.Year} onChange={this.handleEditChange.bind(this,'Year')}
                     max="2017" />
 

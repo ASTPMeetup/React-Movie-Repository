@@ -12,12 +12,12 @@ class MovieList extends Component {
     }
   }
 
-  updateMovieList(editedMovie){
-    this.state.updateListView(editedMovie);
+  updateMovieList(editedMovie, movie_id){
+    this.state.updateListView(editedMovie, movie_id);
   }
 
-  deleteMovie(movieToDelete){
-    this.state.deleteMovieView(movieToDelete);
+  deleteMovie(movie_id){
+    this.state.deleteMovieView(movie_id);
   }
 
   render() {
@@ -26,8 +26,8 @@ class MovieList extends Component {
         {this.props.movies.map(movie => {
           return (
             <Movie
-              _id={movie._id}
               key={movie.key}
+              movie_id={movie._id}
               Title={movie.Title}
               Genre={movie.Genre}
               Year={movie.Year}
