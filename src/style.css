@@ -8,7 +8,7 @@ body {
   background: #000;
 }
 
-.bannerImg {
+.movieImg {
   height: 209px;
   max-width: 85% !important;
   margin-bottom: 5px;
@@ -20,14 +20,14 @@ body {
   opacity: .5;
 }
 
-.delete_img:hover, #editLink:hover {
+.delete_img:hover, .editLink:hover {
   opacity: 1;
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.delete_img, ul, .car_edit, #editLink {
+.delete_img, ul, .car_edit, .editLink {
   display: inline;
   background-color: transparent;
 }
@@ -42,13 +42,13 @@ body {
   min-height: 150px;
 }
 
-#editLink {
+.editLink {
   height: 15px;
   margin-right: 10px;
   opacity: 0.5;
 }
 
-#year_edit {
+.year_edit {
   width: 100px;
   margin-right: 5px;
   margin-bottom: 5px;
@@ -62,7 +62,7 @@ body {
   padding-right: 10px;
 }
 
-#make_edit  {
+.make_edit  {
   width: 250px;
   margin-right: 5px;
   margin-bottom: 5px;
@@ -127,7 +127,7 @@ body {
   display: inline-block;
 }
 
-#update_submit {
+.update_submit {
   margin-left:10px;
   padding: 5px !important;
   width: 70px;
@@ -182,7 +182,7 @@ label {
   text-align: center;
   padding-top: 10px;
 }
-#no_data {
+.no_data {
   color: #8e0000;
 }
 
@@ -220,7 +220,7 @@ hr {
   padding-left: 100px;
 }
 
-#rm_icon {
+.rm_icon {
   width: 16px;
 }
 

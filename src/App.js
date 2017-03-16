@@ -165,23 +165,23 @@ class App extends Component {
                   <div className="caption-full">
                       <h2>React Movie Database</h2>
                       <blockquote>
-                      <p>This RESTful application ultilizes OMDb API to auto-generate data based on movie title submissions. Submit a title below to edit, remove and search through all your favorite films. </p>
+                      <p role="contentinfo">This RESTful application ultilizes OMDb API to auto-generate data based on movie title submissions. Submit a title below to edit, remove and search through all your favorite films. </p>
                       </blockquote>
                       <div id="input_container">
                         <div>
-                          <label>Search Titles: </label><SearchBar value={ this.state.searchText} onFocus="window.scroll(0,0)" onChange={this.handleChange.bind(this)} />
+                          <label aria-labelledby="movie_search">Search Titles: </label><SearchBar value={ this.state.searchText} onFocus="window.scroll(0,0)" onChange={this.handleChange.bind(this)} />
                         </div>
                         <div>
-                          <form onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input form-inline" ref="form">
+                          <form role="form" onSubmit={preventDefault(this.handleAddMovie.bind(this))} name="movie_input" className="movie_input form-inline" ref="form">
                             <div className="form-group">
-                              <label>Title: </label>
-                              <input ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="Tile" type="text" className="title_input" required />
+                              <label id="title_submit">Title: </label>
+                              <input aria-labelledby="title_submit" ref="input" onChange={this.handleInputChange.bind(this, 'inputTitle')} value={this.state.inputTitle} name="Tile" type="text" className="title_input" required />
                             </div>
                             <div className="form-group">
-                              <label>Year (optional): </label>
-                              <input  ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="Year" type="number" pattern="^\d{4}$" max="2017" className="year_input"/>
+                              <label id="year_search">Year (optional): </label>
+                              <input aria-labelledby="year_submit" ref="input" onChange={this.handleInputChange.bind(this, 'inputYear')} value={this.state.inputYear} name="Year" type="number" pattern="^\d{4}$" max="2017" className="year_input"/>
                             </div>
-                            <input type="submit" value="Add Movie" className="button"/>
+                            <input type="submit" role="button" value="Add Movie" className="button"/>
                           </form>
                         </div>
                       </div>

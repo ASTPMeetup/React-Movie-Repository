@@ -22,7 +22,7 @@ class MovieList extends Component {
 
   render() {
     return (
-      <div>
+      <div role="main">
         {this.props.movies.map(movie => {
           return (
             <Movie
