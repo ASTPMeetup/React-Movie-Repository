@@ -38,7 +38,7 @@ class Movie extends Component {
 
    render(){
       return (
-        <div id={this.state.movie_id}>
+        <div className="row" id={this.state.movie_id}>
 
             <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 poster">
               <ToggleDisplay show={this.state.Poster === ''}>
@@ -52,7 +52,7 @@ class Movie extends Component {
               </ToggleDisplay>
             </div>
 
-            <div className="row" className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
+            <div role="row" className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
               <ToggleDisplay hide={this.state.edit_movie}>
                 <h3 role="rowheader" className="item"><strong>{this.state.Title}</strong></h3>
                 <h4 className="item">{this.state.Year}</h4>
