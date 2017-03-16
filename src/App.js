@@ -6,7 +6,7 @@ import Movie from './Movie';
 import axios from 'axios';
 const appDatabase = "https://openws.herokuapp.com/movies";
 const appKey = "?apiKey=8fa0e46f0361117d65d91d6032391324";
-const OMDbAPI = "http://www.omdbapi.com/?";
+const OMDbAPI = "https://www.omdbapi.com/?";
 
 class OMDbMovie {
   constructor(Title, Year, Poster, Genre, Metascore, Actors, Plot) {
