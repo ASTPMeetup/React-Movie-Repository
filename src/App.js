@@ -165,7 +165,7 @@ class App extends Component {
                   <div className="caption-full">
                       <h2>React Movie Database</h2>
                       <blockquote>
-                      <p role="contentinfo">This RESTful application ultilizes OMDb API to auto-generate data based on movie title submissions. Submit a title below to edit, remove and search through all your favorite films. </p>
+                      <p role="contentinfo">This RESTful application utilizes OMDb API to auto-generate data based on movie title submissions. Submit a title below to edit, remove and search through all your favorite films. </p>
                       </blockquote>
                       <div id="input_container">
                         <div>
