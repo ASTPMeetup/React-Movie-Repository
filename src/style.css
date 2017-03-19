@@ -146,6 +146,9 @@ label {
 h3, h2 {
   color: #F05F40;
 }
+i {
+  color: #012561;
+}
 
 #back_button {
   height: 50px;
