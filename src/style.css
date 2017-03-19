@@ -37,6 +37,9 @@ body {
 #car_info {
   margin-left: 0px;
 }
+#movie_search {
+  font-size: 20px;
+}
 
 .movie_div {
   padding-top: 15px;
