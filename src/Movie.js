@@ -45,10 +45,10 @@ class Movie extends Component {
                 <img className="movieImg" role="presentation" src="movie-placeholder.png" alt="movie poster" width="140px"/>
               </ToggleDisplay>
               <ToggleDisplay show={this.state.Poster === "N/A"}>
-                <img className="movieImg" role="presentation" src="movie-placeholder-large.jpg" alt="movie poster" />
+                <img className="movieImg" role="presentation" src="movie-placeholder-large.jpg" alt="movie poster" height="209px"/>
               </ToggleDisplay>
               <ToggleDisplay show={this.state.Poster !== "N/A" && this.state.Poster !== ''}>
-                <img className="movieImg posterImg img-thumbnail" role="presentation" src={this.state.Poster} alt="movie poster" />
+                <img className="movieImg posterImg img-thumbnail" role="presentation" src={this.state.Poster} height="209px" alt="movie poster" />
               </ToggleDisplay>
             </div>
 
