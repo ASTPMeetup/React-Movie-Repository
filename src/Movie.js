@@ -40,7 +40,7 @@ class Movie extends Component {
       return (
         <div className="row" id={this.state.movie_id}>
 
-            <div className="col-lg-2 col-md-2 col-sm-4 col-xs-12 poster">
+            <div className="col-lg-2 col-md-2 col-sm-3 col-xs-12 poster">
               <ToggleDisplay show={this.state.Poster === ''}>
                 <img className="movieImg" role="presentation" src="movie-placeholder.png" alt="movie poster" width="140px"/>
               </ToggleDisplay>
@@ -52,8 +52,9 @@ class Movie extends Component {
               </ToggleDisplay>
             </div>
 
-            <div role="row" className="col-lg-10 col-md-10 col-sm-8 col-xs-12 details">
+            <div role="row" className="col-lg-10 col-md-10 col-sm-9 col-xs-12 details">
               <ToggleDisplay hide={this.state.edit_movie}>
+                <br />
                 <h3 role="rowheader" className="item"><strong>{this.state.Title}</strong></h3>
                 <h4 className="item">{this.state.Year}</h4>
                 <span><img role="button" src="delete.png" className="delete_img" onClick={preventDefault(this.handleDeleteClick.bind(this))} alt="delete movie button"/></span>
@@ -62,6 +63,7 @@ class Movie extends Component {
 
               <ToggleDisplay show={this.state.edit_movie}>
                 <form role="form" name="car_edit" className="car_edit" onSubmit={preventDefault(this.handleUpdateMovie.bind(this))}>
+                    <br />
                     <label id="title_edit_input">Title</label>
                     <input aria-labelledby="title_edit_input" name="movie title" type="text" className="make_edit"
                     value={this.state.Title} onChange={this.handleEditChange.bind(this,'Title')}

@@ -19,13 +19,15 @@ body {
   opacity: .5;
 }
 
-.delete_img:hover, .editLink:hover, .posterImg:hover {
-  opacity: 1;
-  transform: scale(1.2);
-  -webkit-transition: transform .5s; /* Safari */
-  transition: transform .5s;
-  transition-timing-function: linear;
-  -webkit-transition-timing-function: linear;
+@media(min-width: 768px) {
+  .delete_img:hover, .editLink:hover, .posterImg:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    -webkit-transition: transform .5s; /* Safari */
+    transition: transform .5s;
+    transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+  }
 }
 
 .delete_img, ul, .car_edit, .editLink {
@@ -43,7 +45,7 @@ body {
 .movie_div {
   padding-top: 15px;
   padding-left: 0px;
-  min-height: 150px;
+  min-height: 200px;
 }
 
 .editLink {
