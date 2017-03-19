@@ -48,7 +48,7 @@ class Movie extends Component {
                 <img className="movieImg" role="presentation" src="movie-placeholder-large.jpg" alt="movie poster" />
               </ToggleDisplay>
               <ToggleDisplay show={this.state.Poster !== "N/A" && this.state.Poster !== ''}>
-                <img className="movieImg" role="presentation" src={this.state.Poster} alt="movie poster" />
+                <img className="movieImg posterImg img-thumbnail" role="presentation" src={this.state.Poster} alt="movie poster" />
               </ToggleDisplay>
             </div>
 
@@ -72,7 +72,7 @@ class Movie extends Component {
                     value={this.state.Year} onChange={this.handleEditChange.bind(this,'Year')}
                     max="2017" />
 
-                    <input role="button" type="submit" value="update" className="button" className="update_submit" />
+                    <input role="button" type="submit" value="update" className="btn btn-default btn-sm" />
                 </form>
               </ToggleDisplay>
 

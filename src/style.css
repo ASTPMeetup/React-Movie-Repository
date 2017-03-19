@@ -20,11 +20,13 @@ body {
   opacity: .5;
 }
 
-.delete_img:hover, .editLink:hover {
+.delete_img:hover, .editLink:hover, .posterImg:hover {
   opacity: 1;
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
   transform: scale(1.2);
+  -webkit-transition: transform .5s; /* Safari */
+  transition: transform .5s;
+  transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
 }
 
 .delete_img, ul, .car_edit, .editLink {
@@ -104,19 +106,6 @@ body {
   padding-right: 10px;
 }
 
-.button {
-  text-align: center;
-  color: #999999;
-  text-decoration: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background: transparent;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 1px solid #cccccc;
-  width: 150px;
-}
-
 .button:hover {
   background: #e3e3e3;
 }
@@ -125,12 +114,6 @@ body {
   outline: none;
   background-color: none;
   display: inline-block;
-}
-
-.update_submit {
-  margin-left:10px;
-  padding: 5px !important;
-  width: 70px;
 }
 
 #car_count {
@@ -158,6 +141,10 @@ body {
 
 label {
   padding-right: 10px;
+}
+
+h3, h2 {
+  color: #F05F40;
 }
 
 #back_button {
