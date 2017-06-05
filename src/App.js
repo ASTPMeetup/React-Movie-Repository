@@ -7,6 +7,7 @@ import axios from 'axios';
 const appDatabase = "https://openws.herokuapp.com/movies";
 const appKey = "?apiKey=8fa0e46f0361117d65d91d6032391324";
 const OMDbAPI = "https://www.omdbapi.com/?";
+const OMDbKey = "d16e8768";
 
 class OMDbMovie {
   constructor(Title, Year, Poster, Genre, Metascore, Actors, Plot) {
@@ -52,7 +53,7 @@ class App extends Component {
 
   configOMBdRequest(title, year){
     var OMDbTitle = title.trim().replace(/ /g, '+');
-    var OMDbGetRequest = OMDbAPI + 't=' + OMDbTitle + '&y=' + year;
+    var OMDbGetRequest = OMDbAPI + 't=' + OMDbTitle + '&y=' + year + '&apikey=' + OMDbKey;
     return OMDbGetRequest;
   }
 
